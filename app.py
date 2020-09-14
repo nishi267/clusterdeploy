@@ -76,7 +76,7 @@ def predict_note_file():
     df_test['cluster_labels'] = clustr.labels_
     df_test.to_csv(os.getcwd() + "test_cluster3.csv"))
 
-    return "Check the file is generated" + st1
+    return "Check the file is generated" + str1
 
 
 if __name__ == '__main__':
