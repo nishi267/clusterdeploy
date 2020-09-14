@@ -1,6 +1,7 @@
 import pickle
+from io import StringIO
 
-from flask import Flask, request
+from flask import Flask, request, make_response, Response, send_file
 
 from flasgger import Swagger
 import pandas as pd
@@ -9,6 +10,7 @@ from sklearn.metrics import accuracy_score
 import pickle
 import os
 from sklearn.cluster import KMeans
+import flask_excel as excel
 
 app = Flask(__name__)
 Swagger(app)
@@ -73,9 +75,24 @@ def predict_note_file():
     clustr = KMeans(init='k-means++', n_clusters=5, n_init=10)
     clustr.fit(features)
     df_test['cluster_labels'] = clustr.labels_
-    # df_test.to_csv(os.path.join(os.getcwd(), "test_cluster3.csv"))
-    df_test.to_csv(r'D:\test_cluster3.csv')
-    return "Check the file is generated"
+    # df_tepist.to_csv(r'D:\test_cluster3.csv')
+    output = StringIO()
+    df_test.to_csv(output)
+    return Response(output.getvalue(), mimetype="text/csv")
+    # return "Check the file is generated"
+    # --resp = make_response(df_test.to_csv())
+    # resp.headers["Content-Disposition"] = ("attachment; filename=%s" % filename)
+    # resp.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    # --resp.headers["Content-Type"] = "text/csv"
+    # resp.headers["Content-Disposition"] = ("attachment; filename=%s" % filename)
+    # --return resp
+    # & buffer = StringIO()
+    # & df_test.to_csv(buffer, encoding='utf-8')
+    # & buffer.seek(0)
+    # & return send_file(buffer, attachment_filename="test.csv", mimetype='text/csv')
+
+
+# return make_response(df_test.to_csv(), mimetype="text/csv")
 
 
 if __name__ == '__main__':
