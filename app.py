@@ -74,7 +74,7 @@ def predict_note_file():
     clustr.fit(features)
     df_test['cluster_labels'] = clustr.labels_
     stry=os.getcwd()
-    df_test.to_csv(os.path.join(os.getcwd(), "test_cluster3.csv"))
+    df_test.to_csv(r'C:/Users/Admin/Downloads/test_cluster3.csv')
     return "Check the file is generated" + stry
 
 
