@@ -72,7 +72,7 @@ def predict_note_file():
     clustr = KMeans(init='k-means++', n_clusters=5, n_init=10)
     clustr.fit(features)
     df_test['cluster_labels'] = clustr.labels_
-    df_test.to_csv("D:\test_cluster1.csv")
+    df_test.to_csv("https://github.com/nishi267/clusterdeploy/blob/master/test_cluster3.csv")
     return "Check the file is generated"
 
 
