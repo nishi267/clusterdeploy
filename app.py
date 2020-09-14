@@ -49,7 +49,7 @@ def predict_note_file1():
 
 @app.route('/predict_similar', methods=["POST"])
 def predict_note_file():
-    """Let's Authenticate the Banks Note
+    """Let's Find test case cluster
     This is using docstrings for specifications.
     ---
     parameters:
@@ -73,9 +73,9 @@ def predict_note_file():
     clustr = KMeans(init='k-means++', n_clusters=5, n_init=10)
     clustr.fit(features)
     df_test['cluster_labels'] = clustr.labels_
-    stry=os.getcwd()
-    df_test.to_csv(os.path.join(os.getcwd(), "test_cluster6.csv"))
-    return "Check the file is generated" + stry
+    df_test.to_csv(os.path.join(os.getcwd(), "test_cluster3.csv"))
+
+    return "Check the file is generated"
 
 
 if __name__ == '__main__':
