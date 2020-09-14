@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score
 import pickle
+import os
 from sklearn.cluster import KMeans
 
 app = Flask(__name__)
@@ -72,8 +73,9 @@ def predict_note_file():
     clustr = KMeans(init='k-means++', n_clusters=5, n_init=10)
     clustr.fit(features)
     df_test['cluster_labels'] = clustr.labels_
-    df_test.to_csv("https://github.com/nishi267/clusterdeploy/blob/master/test_cluster3.csv")
-    return "Check the file is generated"
+    stry=os.getcwd()
+    df_test.to_csv(os.path.join(os.getcwd(), "test_cluster3.csv"))
+    return "Check the file is generated" + stry
 
 
 if __name__ == '__main__':
